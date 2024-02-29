@@ -7,7 +7,6 @@ void receivePlayerDetails(int serverSocket, struct players *details) {
 	debuglog(2, "Receiving Player details size is ", size);
 	char *ptr = (char *)details;
 	size_t bytesReceived = 0;
-        Debuglog1(DEBUG_LEVEL, "started receving Players details from the server.....");
 	while (bytesReceived < size) {
 		ssize_t ret = recv(serverSocket, ptr + bytesReceived, size - bytesReceived, 0);
 		if (ret == -1) {
@@ -78,7 +77,6 @@ void receiveBatterScores(int serverSocket, struct batter *scores) {
 	debuglog(2, "Receiving batter scores size is ", size);
 	char *ptr = (char *)scores;
 	size_t bytesReceived = 0;
-         Debuglog1(DEBUG_LEVEL, "started receiving Batter scores from the server.....");
 	while (bytesReceived < size) {
 		ssize_t ret = recv(serverSocket, ptr + bytesReceived, size - bytesReceived, 0);
 		if (ret == -1) {
@@ -102,7 +100,6 @@ void receiveBowlerUpdates(int serverSocket, struct bowler *updates) {
 	debuglog(2, "Receiving bowler updates size is ", size);
 	char *ptr = (char *)updates;
 	size_t bytesReceived = 0;
-        Debuglog1(DEBUG_LEVEL, "started receiving Bowler updates from the server.....");
 	while (bytesReceived < size) {
 		ssize_t ret = recv(serverSocket, ptr + bytesReceived, size - bytesReceived, 0);
 		if (ret == -1) {
@@ -133,72 +130,6 @@ void sendClientDetails(int clientSocket, struct Client *client_info) {
 	debug_log(2, "completed Sending client details ");
 }
 
-
-// Function to set debug level based on command-line arguments
-void setDebugLevel(int argc, char *argv[]) {
-    if (argc <= 3) {
-        if (argc == 1) {
-            printf("\n");
-        } else if (argc == 2) {
-            if (!strcmp(argv[1], "-v") == 0) {
-                printf("Invalid input! Enter -v\n");
-                exit(1);
-            } else {
-                DEBUG_LEVEL = 2;
-                printf("Debug level set to: %d\n", DEBUG_LEVEL);
-            }
-        } else if (argc == 3) {
-            if (!strcmp(argv[1], "-v") && (strcmp(argv[2], "1") == 0 || strcmp(argv[2], "2") == 0 || strcmp(argv[2], "3") == 0)) {
-                DEBUG_LEVEL = atoi(argv[2]);
-                printf("Debug level set to: %d\n", DEBUG_LEVEL);
-            } else {
-                printf("Invalid input!\n Input format is -v 1 or -v 2 or -v 3 only\n");
-                exit(1);
-            }
-        } else {
-            DEBUG_LEVEL = 2;
-            printf("Debug level set to: %d\n", DEBUG_LEVEL);
-        }
-    } 
-}
-
-// Function to set debug level based on command-line arguments
-void setDebugLevel(int argc, char *argv[]) {
-    if (argc <= 3) {
-        if (argc == 1) {
-            printf("\n");
-        } else if (argc == 2) {
-            if (!strcmp(argv[1], "-v") == 0) {
-                printf("Invalid input! Enter -v\n");
-                exit(1);
-            } else {
-                DEBUG_LEVEL = 2;
-                printf("Debug level set to: %d\n", DEBUG_LEVEL);
-            }
-        } else if (argc == 3) {
-            if (!strcmp(argv[1], "-v") && (strcmp(argv[2], "1") == 0 || strcmp(argv[2], "2") == 0 || strcmp(argv[2], "3") == 0)) {
-                DEBUG_LEVEL = atoi(argv[2]);
-                printf("Debug level set to: %d\n", DEBUG_LEVEL);
-            } else {
-                printf("Invalid input!\n Input format is -v 1 or -v 2 or -v 3 only\n");
-                exit(1);
-            }
-        } else {
-            DEBUG_LEVEL = 2;
-            printf("Debug level set to: %d\n", DEBUG_LEVEL);
-        }
-    } 
-}
-void debug_log(int level,  const char * message) {
-  if (debug >= level) {
-    printf("Debug[%d]: %s\n", level, message);
-  }
-}
-void debuglog(int level,  const char * message, size_t size) {
-  if (debug >= level) {
-    printf("Debug[%d]: %s %ld\n", level, message,size);
-  }
-}
 int main(int argc, char *argv[]) {
     int clientSocket;
     struct sockaddr_in serverAddr;
@@ -216,7 +147,7 @@ int main(int argc, char *argv[]) {
     // Set up server address struct
     memset(&serverAddr, 0, sizeof(serverAddr));
     serverAddr.sin_family = AF_INET;
-    serverAddr.sin_addr.s_addr = inet_addr("192.168.29.239"); // Server IP address (localhost)
+    serverAddr.sin_addr.s_addr = inet_addr("192.168.29.48"); // Server IP address (localhost)
     serverAddr.sin_port = htons(8080); // Server port
 
     // Connect to the server

@@ -15,7 +15,6 @@ char buf[]="hello";
 // SQLite database and statement variables
 sqlite3 *db;
 sqlite3_stmt *stmt;
-
 // Function to open the SQLite database
 int openDatabase() {
 	// Open database file
@@ -463,44 +462,6 @@ void sendBatterScores(int clientSocket, struct batter *scores) {
 	}
 }*/
 
-// Function to set debug level based on command-line arguments
-void setDebugLevel(int argc, char *argv[]) {
-    if (argc <= 3) {
-        if (argc == 1) {
-            printf("\n");
-        } else if (argc == 2) {
-            if (!strcmp(argv[1], "-v") == 0) {
-                printf("Invalid input! Enter -v\n");
-                exit(1);
-            } else {
-                DEBUG_LEVEL = 2;
-                printf("Debug level set to: %d\n", DEBUG_LEVEL);
-            }
-        } else if (argc == 3) {
-            if (!strcmp(argv[1], "-v") && (strcmp(argv[2], "1") == 0 || strcmp(argv[2], "2") == 0 || strcmp(argv[2], "3") == 0)) {
-                DEBUG_LEVEL = atoi(argv[2]);
-                printf("Debug level set to: %d\n", DEBUG_LEVEL);
-            } else {
-                printf("Invalid input!\n Input format is -v 1 or -v 2 or -v 3 only\n");
-                exit(1);
-            }
-        } else {
-            DEBUG_LEVEL = 2;
-            printf("Debug level set to: %d\n", DEBUG_LEVEL);
-        }
-    } 
-}
-void debug_log(int level,  const char * message) {
-  if (debug >= level) {
-    printf("Debug[%d]: %s\n", level, message);
-  }
-}
-void debuglog(int level,  const char * message, size_t size) {
-  if (debug >= level) {
-    printf("Debug[%d]: %s %ld\n", level, message,size);
-  }
-}
-
 void *handle_client(void *arg) {
 debug_log(2, "Entered into handle client thread");
 	int client_socket = *((int *)arg);
@@ -850,7 +811,7 @@ l1:   if (values.innings == 2) {
       }
 
       address.sin_family = AF_INET;
-      address.sin_addr.s_addr =inet_addr("192.168.29.239");
+      address.sin_addr.s_addr =inet_addr("192.168.29.48");
       address.sin_port = htons(PORT);
 
       // Bind the socket to localhost and the specified port

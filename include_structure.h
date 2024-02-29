@@ -31,10 +31,8 @@
 #define MAX_BALLS_PER_OVER 6
 int DEBUG_LEVEL = 0; // Global variable to hold debug level
 
-void Debuglog1(int level, const char *message);
-void Debuglog2(int level, const char *message);
-void Debuglog3(int level, const char *message);
-
+void debug_log(int level,  const char * message);
+void debuglog(int level,  const char * message, size_t size);
 // Structure to represent the cricket scoreboard
 struct score {
 	int target;
@@ -117,6 +115,44 @@ struct Client
 	int clientNum;
        char choice;
 };
+
+// Function to set debug level based on command-line arguments
+void setDebugLevel(int argc, char *argv[]) {
+    if (argc <= 3) {
+        if (argc == 1) {
+            printf("\n");
+        } else if (argc == 2) {
+            if (!strcmp(argv[1], "-v") == 0) {
+                printf("Invalid input! Enter -v\n");
+                exit(1);
+            } else {
+                DEBUG_LEVEL = 2;
+                printf("Debug level set to: %d\n", DEBUG_LEVEL);
+            }
+        } else if (argc == 3) {
+            if (!strcmp(argv[1], "-v") && (strcmp(argv[2], "1") == 0 || strcmp(argv[2], "2") == 0 || strcmp(argv[2], "3") == 0)) {
+                DEBUG_LEVEL = atoi(argv[2]);
+                printf("Debug level set to: %d\n", DEBUG_LEVEL);
+            } else {
+                printf("Invalid input!\n Input format is -v 1 or -v 2 or -v 3 only\n");
+                exit(1);
+            }
+        } else {
+            DEBUG_LEVEL = 2;
+            printf("Debug level set to: %d\n", DEBUG_LEVEL);
+        }
+    } 
+}
+void debug_log(int level,  const char * message) {
+  if (DEBUG_LEVEL >= level) {
+    printf("Debug[%d]: %s\n", level, message);
+  }
+}
+void debuglog(int level,  const char * message, size_t size) {
+  if (DEBUG_LEVEL >= level) {
+    printf("Debug[%d]: %s %ld\n", level, message,size);
+  }
+}
 // Function to display the cricket scoreboard    int team_1_batters_start_index;
 void displayScoreboard(struct score *board, struct bowler *updates, struct batter *scores, struct inner *values, struct players *details) {
 	// Print the scoreboard header
