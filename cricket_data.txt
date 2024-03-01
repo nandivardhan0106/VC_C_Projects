@@ -1,0 +1,43 @@
+Team names
+INDIA
+ENGLAND
+TEAM 1 PLAYERS NAMES🏏️(bating side names innigs-1 should be entered here in the order of batting) 
+Rohit Sharma(C)
+Yashasvi Jaiswal
+Shubman Gill
+KL Rahul(WK)
+Shreyas Iyer
+Ravindra Jadeja
+Srikar Bharat
+Ravichandran
+Axar Patel
+Jasprit Bumrah
+Mohammed Siraj
+TEAM 2 PLAYERS NAMES🏏️(bowling side names of innings-1 should be entered here in the order of batting)
+Zak Crawley
+Ben Duckett
+Ollie Pope
+Joe Root
+Jonny Bairstow
+Ben Stokes(C)
+Ben Foakes(WK)
+Rehan Ahmed
+Tom Hartley
+Mark Wood
+Jack Leach
+🥎️TEAM 1 BOWLERS ORDER
+Jasprit Bumrah
+Ashwin
+Axar Patel
+Ravindra Jadeja
+Mohammed Siraj
+🥎️TEAM 2 BOWLERS ORDER
+Mark Wood
+Tom Hartley
+Jack Leach
+Rehan Ahmed
+Joe Root
+🧢️UMPIRES DETAILS
+John
+Denny
+Sunny
